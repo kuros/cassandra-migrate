@@ -30,10 +30,10 @@ public class Environment {
             Properties prop = new Properties();
             prop.load(inputStream);
 
+            this.delimeter = ";";
             this.contactPoint = prop.getProperty(Keys.contact_point.name());
             this.keyspace = prop.getProperty(Keys.keyspace.name());
             this.port = prop.getProperty(Keys.port.name(), "9042");
-            this.delimeter = prop.getProperty(Keys.delimiter.name(), ";");
             this.username = prop.getProperty(Keys.username.name());
             this.password = prop.getProperty(Keys.password.name());
             this.changeLog = prop.getProperty(Keys.changelog.name(), CHANGELOG.toUpperCase());
@@ -76,6 +76,6 @@ public class Environment {
     }
 
     private enum Keys {
-        contact_point, keyspace, port, username, password, delimiter, changelog, charset
+        contact_point, keyspace, port, username, password, delimeter, changelog, charset
     }
 }

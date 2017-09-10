@@ -44,7 +44,7 @@ public class InitializeCommand extends BaseCommand {
         if (list.length != 0) {
             for (String entry : list) {
                 if (!entry.startsWith(".")) {
-                    throw new MigrationException("Directory must be empty (.git etc allowed): " + path.getAbsolutePath());
+                    throw new MigrationException("Directory must be empty (.git etc allowed): " + path.getAbsolutePath() + "\n");
                 }
             }
         }
@@ -55,7 +55,7 @@ public class InitializeCommand extends BaseCommand {
             printStream.println("Creating: " + path.getName());
             if (!path.mkdirs()) {
                 throw new MigrationException(
-                        "Could not create directory path for an unknown reason. Make sure you have access to the directory.");
+                        "Could not create directory path for an unknown reason. Make sure you have access to the directory.\n");
             }
         }
     }

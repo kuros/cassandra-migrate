@@ -49,7 +49,7 @@ public class DBHelper {
 
             getSession();
         } catch (final Throwable throwable) {
-            throw new MigrationException("Unable to connect to Cassandra Cluster!", throwable);
+            throw new MigrationException("Unable to connect to Cassandra Cluster!\n", throwable);
         }
     }
 

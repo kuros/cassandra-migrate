@@ -28,7 +28,7 @@ public class Files {
             final InputStreamReader inputStreamReader = new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(resource));
             copyTemplate(inputStreamReader, toFile, variables);
         } catch (IOException e) {
-            throw new MigrationException("Error copying " + resource + " to " + toFile.getAbsolutePath() + ".  Cause: " + e,
+            throw new MigrationException("Error copying " + resource + " to " + toFile.getAbsolutePath() + ".  Cause: " + e + "\n",
                     e);
         }
     }

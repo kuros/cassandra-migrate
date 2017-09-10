@@ -15,7 +15,7 @@ public class NewCommand extends BaseCommand {
 
     public void execute(final String... params) {
         if (Util.isEmpty(params)) {
-            throw new MigrationException("No description specified for new migration.");
+            throw new MigrationException("No description specified for new migration.\n");
         }
         String description = params[0];
         Properties variables = new Properties();

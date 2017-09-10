@@ -47,7 +47,7 @@ public class Change implements Comparable {
         try {
             this.date = DATE_FORMAT.parse(date);
         } catch (final ParseException e) {
-            throw new MigrationException("Not able to parse id");
+            throw new MigrationException("Not able to parse id\n");
         }
     }
 

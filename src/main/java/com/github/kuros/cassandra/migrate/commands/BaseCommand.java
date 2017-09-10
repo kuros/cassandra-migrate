@@ -56,7 +56,7 @@ public abstract class BaseCommand implements Command {
     protected File existingEnvironmentFile() {
         File envFile = environmentFile();
         if (!envFile.exists()) {
-            throw new MigrationException("Environment file missing: " + envFile.getAbsolutePath());
+            throw new MigrationException("Environment file missing: " + envFile.getAbsolutePath() + "\n");
         }
         return envFile;
     }

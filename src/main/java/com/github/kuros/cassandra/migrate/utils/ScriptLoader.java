@@ -17,7 +17,7 @@ public class ScriptLoader {
         if (scriptDir.isDirectory()) {
             String[] filenames = scriptDir.list();
             if (filenames == null) {
-                throw new MigrationException(scriptDir + " does not exist.");
+                throw new MigrationException(scriptDir + " does not exist.\n");
             }
             for (String filename : filenames) {
                 if (filename.endsWith(".cql")) {
@@ -48,7 +48,7 @@ public class ScriptLoader {
             change.setFileName(filename);
             return change;
         } catch (Exception e) {
-            throw new MigrationException("Error parsing change from file.  Cause: " + e, e);
+            throw new MigrationException("Error parsing change from file.  Cause: " + e + "\n", e);
         }
     }
 

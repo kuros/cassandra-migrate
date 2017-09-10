@@ -28,7 +28,7 @@ public enum Commands {
             }
         }
 
-        throw new MigrationException("Attempt to execute unknown command: " + commandString);
+        throw new MigrationException("Attempt to execute unknown command: " + commandString + "\n");
     }
 
     private static Command createCommand(Commands aResolvedCommand, SelectedOptions selectedOptions) {
