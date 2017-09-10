@@ -46,6 +46,9 @@ public enum Commands {
             case DOWN:
                 command = new DownCommand(selectedOptions);
                 break;
+            case STATUS:
+                command = new StatusCommand(selectedOptions);
+                break;
             default:
                 return new Command() {
                     public void execute(String... params) {

@@ -8,6 +8,7 @@ import com.github.kuros.cassandra.migrate.utils.ScriptReader;
 import com.github.kuros.cassandra.migrate.utils.Util;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -23,19 +24,23 @@ public class StatusCommand extends BaseCommand {
 
         try {
             getDbHelper().open();
-            List<Change> applied = getDbHelper().findAll();
+
 
             final Map<String, Change> changeMap = getChangeMap();
 
-            Collections.reverse(applied);
+            final List<Change> changes = ScriptLoader.loadScripts(this.paths.getScriptPath());
 
+            println(printStream, "ID\t\t\t\tstatus\t\tDescription");
+            println(printStream, Util.horizontalLine("", 80));
 
-            int downCount = Integer.parseInt(this.options.getParams());
+            for (Change change : changes) {
+                if (changeMap.containsKey(change.getId())) {
+                    change.setStatus("Done");
+                } else {
+                    change.setStatus("Pending");
+                }
 
-            downCount = downCount > applied.size() ? applied.size() : downCount;
-
-            for (int j = 0; j < downCount; j++) {
-                applyChange(changeMap.get(applied.get(j).getId()));
+                println(printStream, change.getId() + "\t" + change.getStatus() + "\t\t" + change.getDescription());
             }
 
         } catch (final Throwable throwable) {
@@ -45,9 +50,13 @@ public class StatusCommand extends BaseCommand {
         }
     }
 
+    private void println(final PrintStream printStream, final String s) {
+        printStream.println(s);
+    }
+
     private Map<String, Change> getChangeMap() {
         final Map<String, Change> idMap = new HashMap<String, Change>();
-        final List<Change> changes = ScriptLoader.loadScripts(this.paths.getScriptPath());
+        List<Change> changes = getDbHelper().findAll();
         for (Change change : changes) {
             idMap.put(change.getId(), change);
         }

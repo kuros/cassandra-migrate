@@ -16,6 +16,7 @@ public class Change implements Comparable {
     private String description;
     private String fileName;
     private Date date;
+    private String status;
 
     public String getId() {
         return id;
@@ -56,6 +57,14 @@ public class Change implements Comparable {
 
     public int compareTo(final Change o) {
         return this.date.compareTo(o.getDate());
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(final String status) {
+        this.status = status;
     }
 
     public int compareTo(final Object o) {
