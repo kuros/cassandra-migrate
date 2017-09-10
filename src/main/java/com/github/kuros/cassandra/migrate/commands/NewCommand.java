@@ -24,6 +24,8 @@ public class NewCommand extends BaseCommand {
         String filename = getNextID() + "_" + description.replace(' ', '_') + ".cql";
 
         copyDefaultTemplate(variables, filename);
+
+        printStream.println(filename);
     }
 
     private void copyDefaultTemplate(Properties variables, String filename) {
