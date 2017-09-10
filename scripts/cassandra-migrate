@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# description:  This tool aims to provide commandline execution for cassandra-migrate
+#
+# JAVA:         The java executable.
+#
+# CLASSPATH:    The classpath for the JVM.
+#
+
+pushd "${0%/*}" > /dev/null
+SCRIPT_NAME=${0#${0%/*}/}
+SCRIPT_BASE_PATH=`pwd`
+popd > /dev/null
+
+
+# initialization of JRE
+if [ "" = "$JAVA" ] ; then
+    JAVA=`which java`
+
+    # still not found?
+    if [ "" = "$JAVA" ] ; then
+        printf $NEW_LINE
+        printf "Cannot find a Java runtime environment, exiting."
+        printf $NEW_LINE
+
+        exit 1;
+    fi
+fi
+
+# set up the classpath
+CLASSPATH=
+for  file in `ls ${SCRIPT_BASE_PATH}/lib` ; do
+    CLASSPATH=$CLASSPATH:${SCRIPT_BASE_PATH}/lib/$file
+done
+
+if [ "" = "$CLASSPATH" ] ; then
+    printf $NEW_LINE
+    printf "$NAME not installed!"
+    printf $NEW_LINE
+
+    exit 1;
+fi
+
+${JAVA} ${JAVA_OPTS} -classpath ${CLASSPATH} com.github.kuros.cassandra.migrate.CassandraMigrate "$@"
