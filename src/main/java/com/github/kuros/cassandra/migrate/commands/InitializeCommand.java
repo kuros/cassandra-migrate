@@ -29,12 +29,6 @@ public class InitializeCommand extends BaseCommand {
 
         Files.INSTANCE.copyResourceTo("templates/README", Util.file(basePath, "README"));
         Files.INSTANCE.copyResourceTo("templates/environment.properties", environmentFile());
-        Files.INSTANCE.copyResourceTo("templates/changelog.cql",
-                Util.file(scriptPath, getNextID() + "_create_changelog.cql"), new Properties(){
-                    {
-                        setProperty("changelog", changelogTable());
-                    }
-                });
         Files.INSTANCE.copyResourceTo("templates/migration.cql",
                 Util.file(scriptPath, getNextID() + "_first_migration.cql"), new Properties() {
                     {
