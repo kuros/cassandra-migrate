@@ -3,7 +3,7 @@ Tool to manage cassandra scripts
 
 ## Introduction
 
-The entire Migrations system can be accessed through this one simple command. You can access the built-in help by typing: migrate --help.
+The entire Migrations system can be accessed through this one simple command. You can access the built-in help by typing: **cassandra-migrate --help**.
 
 Calling the migrate command with no options or invalid options also produces the help message. Here's the output of the help command:
 
